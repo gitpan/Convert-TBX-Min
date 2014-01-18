@@ -31,7 +31,7 @@ my %status_map = (
 # convert input file if called as a script
 min2basic(@ARGV) unless caller;
 
-our $VERSION = '0.01'; # VERSION
+our $VERSION = '0.02'; # VERSION
 
 # ABSTRACT: Convert TBX-Min to TBX-Basic
 
@@ -73,7 +73,7 @@ sub _make_header {
         wrap_in('titleStmt')->paste($file_desc);
 
     my $source_desc = XML::Twig::Elt->new('sourceDesc')->
-        paste($file_desc);
+        paste(last_child => $file_desc);
 
     my @header_atts;
     for my $header_att (qw(creator description directionality license)){
@@ -155,7 +155,7 @@ Convert::TBX::Min - Convert TBX-Min to TBX-Basic
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 SYNOPSIS
 

@@ -2,7 +2,7 @@ NAME
     Convert::TBX::Min - Convert TBX-Min to TBX-Basic
 
 VERSION
-    version 0.01
+    version 0.02
 
 SYNOPSIS
             use Convert::TBX::Min 'min2basic';

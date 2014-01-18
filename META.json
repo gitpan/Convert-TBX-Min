@@ -64,7 +64,7 @@
    "provides" : {
       "Convert::TBX::Min" : {
          "file" : "lib/Convert/TBX/Min.pm",
-         "version" : "0.01"
+         "version" : "0.02"
       }
    },
    "release_status" : "stable",
@@ -83,7 +83,7 @@
          "web" : "https://github.com/byutrg/p5-Convert-TBX-Min"
       }
    },
-   "version" : "0.01",
+   "version" : "0.02",
    "x_BuiltWith" : {
       "modules" : {
          "Exporter::Easy" : "0.16",
