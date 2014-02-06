@@ -1,7 +1,7 @@
 #
 # This file is part of Convert-TBX-Min
 #
-# This software is copyright (c) 2014 by Nathan Glenn.
+# This software is copyright (c) 2014 by Alan K. Melby.
 #
 # This is free software; you can redistribute it and/or modify it under
 # the same terms as the Perl 5 programming language system itself.
@@ -9,7 +9,7 @@
 package Convert::TBX::Min;
 use strict;
 use warnings;
-use TBX::Min;
+use TBX::Min 0.06;
 use XML::Writer;
 use XML::Twig;
 use Exporter::Easy (
@@ -31,7 +31,7 @@ my %status_map = (
 # convert input file if called as a script
 min2basic(@ARGV) unless caller;
 
-our $VERSION = '0.02'; # VERSION
+our $VERSION = '0.03'; # VERSION
 
 # ABSTRACT: Convert TBX-Min to TBX-Basic
 
@@ -100,7 +100,7 @@ sub _make_text {
     my ($min) = @_;
     my $body = XML::Twig::Elt->new('body');
 
-    for my $concept (@{$min->concepts}){
+    for my $concept (@{$min->entries}){
         my $entry = XML::Twig::Elt->new(
             'termEntry' => {id => $concept->id})->paste(
             last_child => $body);
@@ -155,7 +155,7 @@ Convert::TBX::Min - Convert TBX-Min to TBX-Basic
 
 =head1 VERSION
 
-version 0.02
+version 0.03
 
 =head1 SYNOPSIS
 
@@ -170,10 +170,26 @@ This module converts TBX-Min XML into TBX-Basic XML.
 
 =head2 C<min2basic>
 
-Converts TBX-Min data into TBX-Basic data. The argument may be either
-the path to a TBX-Min file, a scalar ref containing the actual
-TBX-Min text, or a TBX::Min object. The return value is a scalar
-ref containing the TBX-Basic data.
+Converts TBX-Min data into TBX-Basic data. The input may be either
+a TBX::Min object or data to be passed to TBX::Min's
+L<TBX::Min/new_from_xml> constructor. The return value is a scalar
+ref containing the TBX-Basic XML document as a UTF-8-encoded string.
+
+=head1 SEE ALSO
+
+=over
+
+=item L<min2basic> (the included script)
+
+=item L<TBX::Min>
+
+=item L<Convert::TBX::Basic>
+
+=back
+
+Schema for validating TBX documents, as well as more information
+about individual dialects, is available on
+L<GitHub|https://github.com/byutrg/TBX-Spec>.
 
 =head1 AUTHOR
 
@@ -181,7 +197,7 @@ Nathan Glenn <garfieldnate@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Nathan Glenn.
+This software is copyright (c) 2014 by Alan K. Melby.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

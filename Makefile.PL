@@ -18,27 +18,34 @@ my %WriteMakefileArgs = (
     "Module::Build" => "0.3601"
   },
   "DISTNAME" => "Convert-TBX-Min",
-  "EXE_FILES" => [],
+  "EXE_FILES" => [
+    "bin/min2basic"
+  ],
   "LICENSE" => "perl",
   "NAME" => "Convert::TBX::Min",
   "PREREQ_PM" => {
     "Exporter::Easy" => 0,
-    "TBX::Min" => 0,
+    "TBX::Min" => "0.06",
     "XML::Twig" => 0,
     "XML::Writer" => 0,
     "strict" => 0,
     "warnings" => 0
   },
   "TEST_REQUIRES" => {
+    "Capture::Tiny" => 0,
+    "Data::Section::Simple" => 0,
+    "Devel::FindPerl" => 0,
     "File::Find" => 0,
     "File::Temp" => 0,
+    "FindBin" => 0,
+    "Path::Tiny" => 0,
     "Test::Base" => 0,
     "Test::LongString" => 0,
     "Test::More" => "0.88",
     "Test::NoWarnings" => 0,
     "Test::XML" => 0
   },
-  "VERSION" => "0.02",
+  "VERSION" => "0.03",
   "test" => {
     "TESTS" => "t/*.t"
   }

@@ -17,24 +17,31 @@ my %module_build_args = (
     "Nathan Glenn <garfieldnate\@gmail.com>"
   ],
   "dist_name" => "Convert-TBX-Min",
-  "dist_version" => "0.02",
+  "dist_version" => "0.03",
   "license" => "perl",
   "module_name" => "Convert::TBX::Min",
   "recommends" => {},
   "recursive_test_files" => 1,
   "requires" => {
     "Exporter::Easy" => 0,
-    "TBX::Min" => 0,
+    "TBX::Min" => "0.06",
     "XML::Twig" => 0,
     "XML::Writer" => 0,
     "perl" => "5.006",
     "strict" => 0,
     "warnings" => 0
   },
-  "script_files" => [],
+  "script_files" => [
+    "bin/min2basic"
+  ],
   "test_requires" => {
+    "Capture::Tiny" => 0,
+    "Data::Section::Simple" => 0,
+    "Devel::FindPerl" => 0,
     "File::Find" => 0,
     "File::Temp" => 0,
+    "FindBin" => 0,
+    "Path::Tiny" => 0,
     "Test::Base" => 0,
     "Test::LongString" => 0,
     "Test::More" => "0.88",

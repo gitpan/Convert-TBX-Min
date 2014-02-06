@@ -1,10 +1,11 @@
 use strict;
 use warnings;
-use Test::More;
-plan tests => 3 + blocks();
-use Test::NoWarnings;
-use Convert::TBX::Min 'min2basic';
 use Test::Base;
+plan tests => 4 + blocks();
+filters_delay; # necessary to grab pre-filtered block section
+use Test::NoWarnings;
+use TBX::Min;
+use Convert::TBX::Min 'min2basic';
 use Test::XML;
 use Test::LongString;
 
@@ -18,9 +19,25 @@ sub convert {
 }
 filters {input => 'convert'};
 
+# first run one test creating a TBX::Min object from the unfiltered
+# data
+is_xml(
+    ${min2basic(
+        TBX::Min->new_from_xml(
+            \((blocks())[0]->input)
+        )
+    )},
+    (blocks())[0]->expected,
+    'convert from TBX::Min object'
+);
+
 for my $block(blocks){
+    $block->run_filters();
     is_xml($block->input, $block->expected, $block->name);
 }
+
+# test conversion of an input TBX::Min object
+
 
 # separately test that the output has the required XML declaration
 # and TBX-Basic doctype, both required by the TBX Checker. These are
@@ -42,13 +59,13 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <conceptEntry id="C002">
+        <entry id="C002">
             <langGroup xml:lang="en">
                 <termGroup>
                     <term>dog</term>
                 </termGroup>
             </langGroup>
-        </conceptEntry>
+        </entry>
     </body>
 </TBX>
 --- expected
@@ -89,14 +106,14 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <conceptEntry id="C002">
+        <entry id="C002">
             <subjectField>whatever</subjectField>
             <langGroup xml:lang="en">
                 <termGroup>
                     <term>dog</term>
                 </termGroup>
             </langGroup>
-        </conceptEntry>
+        </entry>
     </body>
 </TBX>
 --- expected
@@ -143,13 +160,13 @@ __DATA__
         <license>CC BY license can be freely copied and modified</license>
     </header>
     <body>
-        <conceptEntry id="C002">
+        <entry id="C002">
             <langGroup xml:lang="en">
                 <termGroup>
                     <term>dog</term>
                 </termGroup>
             </langGroup>
-        </conceptEntry>
+        </entry>
     </body>
 </TBX>
 --- expected
@@ -192,20 +209,20 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <conceptEntry id="C002">
+        <entry id="C002">
             <langGroup xml:lang="en">
                 <termGroup>
                     <term>dog1</term>
                 </termGroup>
             </langGroup>
-        </conceptEntry>
-        <conceptEntry id="C003">
+        </entry>
+        <entry id="C003">
             <langGroup xml:lang="en">
                 <termGroup>
                     <term>dog2</term>
                 </termGroup>
             </langGroup>
-        </conceptEntry>
+        </entry>
     </body>
 </TBX>
 --- expected
@@ -253,7 +270,7 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <conceptEntry id="C002">
+        <entry id="C002">
             <langGroup xml:lang="de">
                 <termGroup>
                     <term>hund</term>
@@ -264,7 +281,7 @@ __DATA__
                     <term>dog</term>
                 </termGroup>
             </langGroup>
-        </conceptEntry>
+        </entry>
     </body>
 </TBX>
 --- expected
@@ -310,7 +327,7 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <conceptEntry id="C002">
+        <entry id="C002">
             <langGroup xml:lang="en">
                 <termGroup>
                     <term>dog</term>
@@ -320,7 +337,7 @@ __DATA__
                     <partOfSpeech>noun</partOfSpeech>
                 </termGroup>
             </langGroup>
-        </conceptEntry>
+        </entry>
     </body>
 </TBX>
 --- expected
@@ -365,7 +382,7 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <conceptEntry id="C002">
+        <entry id="C002">
             <langGroup xml:lang="en">
                 <termGroup>
                     <term>dog1</term>
@@ -384,7 +401,7 @@ __DATA__
                     <termStatus>obsolete</termStatus>
                 </termGroup>
             </langGroup>
-        </conceptEntry>
+        </entry>
     </body>
 </TBX>
 --- expected
@@ -438,7 +455,7 @@ __DATA__
         <languages source="de" target="en"/>
     </header>
     <body>
-        <conceptEntry id="C002">
+        <entry id="C002">
             <langGroup xml:lang="en">
                 <termGroup>
                     <term>dog1</term>
@@ -465,7 +482,7 @@ __DATA__
                     <partOfSpeech>other</partOfSpeech>
                 </termGroup>
             </langGroup>
-        </conceptEntry>
+        </entry>
     </body>
 </TBX>
 --- expected

@@ -8,11 +8,14 @@ META.json
 META.yml
 Makefile.PL
 README
+bin/min2basic
 dist.ini
 lib/Convert/TBX/Min.pm
 t/00-compile.t
 t/000-report-versions-tiny.t
 t/01-convert.t
+t/02-script.t
+t/corpus/min_sample.tbx
 t/perlcriticrc
 xt/author/critic.t
 xt/release/cpan-changes.t
