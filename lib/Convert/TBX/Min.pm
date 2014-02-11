@@ -31,7 +31,7 @@ my %status_map = (
 # convert input file if called as a script
 min2basic(@ARGV) unless caller;
 
-our $VERSION = '0.03'; # VERSION
+our $VERSION = '0.04'; # VERSION
 
 # ABSTRACT: Convert TBX-Min to TBX-Basic
 
@@ -155,7 +155,7 @@ Convert::TBX::Min - Convert TBX-Min to TBX-Basic
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 

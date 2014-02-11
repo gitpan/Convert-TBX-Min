@@ -11,7 +11,7 @@ use strict;
 use warnings;
 use Convert::TBX::Min 'min2basic';
 # PODNAME: min2basic
-our $VERSION = '0.03'; # VERSION
+our $VERSION = '0.04'; # VERSION
 # ABSTRACT: script for converting TBX-Min to TBX-Basic
 
 
@@ -31,7 +31,7 @@ min2basic - script for converting TBX-Min to TBX-Basic
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 

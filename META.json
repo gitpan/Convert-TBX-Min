@@ -69,7 +69,7 @@
    "provides" : {
       "Convert::TBX::Min" : {
          "file" : "lib/Convert/TBX/Min.pm",
-         "version" : "0.03"
+         "version" : "0.04"
       }
    },
    "release_status" : "stable",
@@ -88,7 +88,7 @@
          "web" : "https://github.com/byutrg/p5-Convert-TBX-Min"
       }
    },
-   "version" : "0.03",
+   "version" : "0.04",
    "x_BuiltWith" : {
       "modules" : {
          "Capture::Tiny" : "0.22",
@@ -99,7 +99,7 @@
          "File::Temp" : "0.2301",
          "FindBin" : "1.51",
          "Module::Build" : "0.4005",
-         "Path::Tiny" : "0.047",
+         "Path::Tiny" : "0.052",
          "Pod::Coverage::TrustPod" : "0.100002",
          "TBX::Min" : "0.06",
          "Test::Base" : "0.60",
