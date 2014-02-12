@@ -31,7 +31,7 @@ no_index:
 provides:
   Convert::TBX::Min:
     file: lib/Convert/TBX/Min.pm
-    version: 0.04
+    version: 0.05
 requires:
   Exporter::Easy: 0
   TBX::Min: 0.06
@@ -45,7 +45,7 @@ resources:
   homepage: https://github.com/byutrg/p5-Convert-TBX-Min
   license: http://dev.perl.org/licenses/
   repository: https://github.com/byutrg/p5-Convert-TBX-Min.git
-version: 0.04
+version: 0.05
 x_BuiltWith:
   modules:
     Capture::Tiny: 0.22
